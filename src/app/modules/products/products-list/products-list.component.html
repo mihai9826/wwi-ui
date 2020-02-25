@@ -1,0 +1,16 @@
+<div class="container">
+  <p class="h1">products-list works!</p>
+  <p>
+    <ngb-alert [type]="type">Mesaj alerta</ngb-alert>
+  </p>
+  <div class="row justify-content-md-around">
+    <div *ngFor="let product of allProducts">
+      <app-product class="col-sm-4"
+                   [id]="product.id"
+                   [title]="product.title"
+                   [body]="product.body"></app-product>
+    </div>
+  </div>
+
+</div>
+
