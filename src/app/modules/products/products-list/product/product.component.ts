@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -7,8 +8,9 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ProductComponent implements OnInit {
   @Input() id: number;
-  @Input() title: string;
-  @Input() body: string;
+  @Input() name: string;
+  @Input() price: number;
+  @Input() inStock: boolean;
   constructor() { }
 
   ngOnInit(): void {

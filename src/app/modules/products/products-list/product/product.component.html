@@ -1,17 +1,14 @@
-<div class="card" style="width: 18rem;">
-  <div class="card-header">
-    {{id}}
-  </div>
+<div class="card border-info" style="width: 18rem;">
+  <div class="card-header bg-transparent border-info h4">{{ (name.length>36)? (name | slice:0:36)+'...':(name) }}</div>
+  <img class="card-img-top" src="http://placehold.jp/286x180.png" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title">{{title}}</h5>
-    <p class="card-text">{{body}}</p>
+    <p class="card-text">Ceva text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, unde.</p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Vestibulum at eros</li>
+    <li class="list-group-item">Price: {{price}}</li>
+    <li class="list-group-item">{{inStock ? 'not available' : 'in stock'}}</li>
   </ul>
-  <div class="card-body">
+  <div class="card-body border-info">
     <a href="#" class="card-link">Card link</a>
     <a href="#" class="card-link">Another link</a>
   </div>

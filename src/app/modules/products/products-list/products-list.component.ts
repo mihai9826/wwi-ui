@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Post} from '../post';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+
 import {ProductsService} from '../services/products.service';
+import {Product} from '../product';
 
 @Component({
   selector: 'app-products-list',
@@ -9,11 +11,12 @@ import {ProductsService} from '../services/products.service';
 })
 export class ProductsListComponent implements OnInit {
   type = 'success';
-  allProducts: Post[];
+  allProducts: Product[];
+  faCoffee = faCoffee;
   constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
-    this.productsService.getAllPosts().subscribe(data => this.allProducts = data);
+    this.productsService.getProducts().subscribe(data => this.allProducts = data);
   }
 
 }
