@@ -5,11 +5,11 @@ import {ProductsService} from '../services/products.service';
 import {Product} from '../product';
 
 @Component({
-  selector: 'app-products-list',
-  templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.css']
+  selector: 'app-products-view',
+  templateUrl: './products-view.component.html',
+  styleUrls: ['./products-view.component.css']
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsViewComponent implements OnInit {
   type = 'success';
   allProducts: Product[];
   faCoffee = faCoffee;

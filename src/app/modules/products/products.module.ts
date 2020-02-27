@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ProductsListComponent } from './products-list/products-list.component';
-import { ProductComponent } from './products-list/product/product.component';
+import { ProductsViewComponent } from './products-view/products-view.component';
+import { ProductComponent } from './products-view/product/product.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 
 
 @NgModule({
-  declarations: [ProductsListComponent, ProductComponent],
+  declarations: [ProductsViewComponent, ProductComponent],
   exports: [
-    ProductsListComponent
+    ProductsViewComponent
   ],
   imports: [
     CommonModule,
