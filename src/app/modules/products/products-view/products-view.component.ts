@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 import {ProductsService} from '../services/products.service';
 import {Product, ProductCategory} from '../product';
@@ -10,16 +9,54 @@ import {Product, ProductCategory} from '../product';
   styleUrls: ['./products-view.component.css']
 })
 export class ProductsViewComponent implements OnInit {
-  type = 'success';
+
   allProducts: Product[];
   productCategories: ProductCategory[];
-  faCoffee = faCoffee;
+  categoryId;
+  itemsPerPage = 18;
+  totalElements;
+  page = 1;
+  previousPage;
   constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
-    this.productsService.getProducts().subscribe(data => this.allProducts = data);
+    this.loadData();
 
     this.productsService.getProductCategories().subscribe(data => this.productCategories = data);
+  }
+
+  loadPage(page: number) {
+    if (page !== this.previousPage) {
+      this.previousPage = page;
+      this.loadData(this.categoryId);
+    }
+  }
+
+  loadData(event?: number) {
+    if (event) {
+      this.categoryId = event;
+      this.productsService.getProductsOfCategory(this.categoryId, this.page - 1, this.itemsPerPage).subscribe(
+        data => {
+          this.allProducts = data.content;
+          this.totalElements = data.totalElements;
+          this.itemsPerPage = data.size;
+        }
+      );
+      return;
+    }
+    this.productsService.getAllProducts(this.page - 1, this.itemsPerPage).subscribe(
+      data => {
+        this.allProducts = data.content;
+        this.totalElements = data.totalElements;
+        this.itemsPerPage = data.size;
+      }
+    );
+    this.categoryId = 0;
+  }
+
+  itemsDropDownChange(event: any) {
+    this.itemsPerPage = event.target.value;
+    this.loadData(this.categoryId);
   }
 
 }
