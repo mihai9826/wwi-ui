@@ -1,0 +1,10 @@
+<div class="card bg-info" style="max-width: 18rem;">
+  <div class="card-header h5">
+    Categories
+  </div>
+  <ul class="list-group list-group-flush" (click)="clickHandler($event)">
+    <li class="list-group-item dropdown-item">All</li>
+    <li class="list-group-item dropdown-item"
+      *ngFor="let category of productCategories">{{category.stockGroupName}}</li>
+  </ul>
+</div>

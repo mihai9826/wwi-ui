@@ -1,18 +1,33 @@
 <div class="container">
   <p class="h1">products-view works!</p>
-  <p>
-    <ngb-alert [type]="type">Mesaj alerta</ngb-alert>
-    <fa-icon [icon]="faCoffee"></fa-icon>
-  </p>
+</div>
+<app-product-categories class="float-left adjust-categories-position"
+                        [productCategories]="productCategories"
+                        (changeCategory)="loadData($event)"></app-product-categories>
+
+  <div class="container">
+    <ngb-pagination [collectionSize]="totalElements"
+                    [pageSize]="itemsPerPage"
+                    [(page)]="page"
+                    [rotate]="true"
+                    [boundaryLinks]="true"
+                    (pageChange)="loadPage($event)"></ngb-pagination>
+    <div class="text-right">
+      <label for="itemsPerPage" class="pr-2">pe pagina</label>
+      <select id="itemsPerPage" class="custom-select" style="width: auto" (change)="itemsDropDownChange($event)">
+        <option [value]="9">9</option>
+        <option [value]="18" [selected]="true">18</option>
+        <option [value]="30">30</option>
+      </select>
+    </div>
   <div class="row justify-content-md-around">
     <div *ngFor="let product of allProducts">
-      <app-product class="col-sm-4"
+      <app-product class="col-sm-6"
                    [id]="product.stockItemId"
                    [name]="product.stockItemName"
                    [price]="product.unitPrice"
                    [inStock]="product.soldOut"></app-product>
     </div>
   </div>
-
 </div>
 
