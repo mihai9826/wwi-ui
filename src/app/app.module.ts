@@ -3,15 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {ProductsModule} from './modules/products/products.module';
-import {HttpClientModule} from '@angular/common/http';
+import {CoreModule} from './core/core.module';
+import { BaseLayoutComponent } from './container/base-layout/base-layout.component';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
-    HttpClientModule, // maybe we can do a coremodule
+    CoreModule,
     ProductsModule
   ],
   providers: [],
