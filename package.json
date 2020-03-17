@@ -35,7 +35,7 @@
     "ng2-completer": "^3.0.3",
     "ng2-nouislider": "^1.8.2",
     "ng2-smart-table": "^1.5.0",
-    "ngx-cookie-service": "^2.2.0",
+    "ngx-cookie-service": "^3.0.2",
     "ngx-perfect-scrollbar": "7.2.1",
     "ngx-tempusdominus-bootstrap": "^1.0.1",
     "ngx-toastr": "^11.2.1",

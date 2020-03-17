@@ -4,8 +4,11 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {BaseLayoutComponent} from '../container/base-layout/base-layout.component';
+import {AppHeaderComponent} from '../container/app-header/app-header.component';
 
 const APP_CONTAINERS = [BaseLayoutComponent];
+
+const APP_COMPONENTS = [AppHeaderComponent];
 
 @NgModule({
   imports: [
@@ -15,7 +18,10 @@ const APP_CONTAINERS = [BaseLayoutComponent];
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  declarations: [...APP_CONTAINERS],
+  declarations: [
+    ...APP_CONTAINERS,
+    ...APP_COMPONENTS
+  ],
   exports: [
     CommonModule,
     RouterModule,

@@ -4,7 +4,7 @@ import {BaseLayoutComponent} from './container/base-layout/base-layout.component
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: BaseLayoutComponent,
     children: [
       {
@@ -12,6 +12,20 @@ const routes: Routes = [
         loadChildren: () => import('./modules/products/products.module').then(mod => mod.ProductsModule)
       }
     ]
+  },
+  {
+    path: 'auth',
+    component: BaseLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./modules/authentication/authentication.module').then(mod => mod.AuthenticationModule)
+      }
+    ]
+  },
+  {
+    path: '**',
+    redirectTo: 'home'
   }
 ];
 
