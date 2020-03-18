@@ -1,7 +1,7 @@
 import {User} from './user';
 
 export class UserPrincipal {
-  user: User;
+  theUser: User;
   authorities: Authority[];
 }
 

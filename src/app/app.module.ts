@@ -8,7 +8,11 @@ import {AppRoutingModule} from './app-routing.module';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from './shared/interceptors/jwt.interceptor';
 import {CookieService} from 'ngx-cookie-service';
-import { AppHeaderComponent } from './container/app-header/app-header.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {LoadingBarRouterModule} from '@ngx-loading-bar/router';
+import {LoadingBarHttpClientModule} from '@ngx-loading-bar/http-client';
 
 @NgModule({
   declarations: [
@@ -17,8 +21,7 @@ import { AppHeaderComponent } from './container/app-header/app-header.component'
   imports: [
     AppRoutingModule,
     BrowserModule,
-    CoreModule,
-    ProductsModule
+    CoreModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

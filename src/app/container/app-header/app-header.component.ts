@@ -17,7 +17,10 @@ export class AppHeaderComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(
-      user => this.user = user
+      user => {
+        this.user = user;
+        console.log(this.user);
+      }
     );
   }
 

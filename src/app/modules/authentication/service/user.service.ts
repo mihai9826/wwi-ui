@@ -6,6 +6,7 @@ import {CookieService} from 'ngx-cookie-service';
 import {environment} from '../../../../environments/environment';
 import {map} from 'rxjs/operators';
 import {LoginRequest} from '../../../shared/models/auth/login-request';
+import {CreateUserRequest} from '../../../shared/models/auth/create-user-request';
 
 @Injectable({
   providedIn: 'root'
@@ -22,16 +23,20 @@ export class UserService {
   getCurrentUser(): Observable<UserPrincipal> {
     return this.http.get<UserPrincipal>(environment.apiBaseURL + '/me')
       .pipe(
-        map(user => {
-          if (user) {
-            this.currentUserSubject.next(user);
+        map(theUser => {
+          if (theUser) {
+            this.currentUserSubject.next(theUser);
           }
-          return user;
+          return theUser;
         })
       );
   }
 
-  public isUserLoggedIn(): boolean {
+  registerUser(createUserReq: CreateUserRequest): Observable<void> {
+    return this.http.post<void>(environment.apiBaseURL + '/users', createUserReq);
+  }
+
+  isUserLoggedIn(): boolean {
     return this.cookieService.check('JSESSIONID');
   }
 
@@ -42,8 +47,6 @@ export class UserService {
 
   logout(): Observable<void> {
     this.currentUserSubject = new BehaviorSubject<UserPrincipal>(null);
-    console.log('LOGOUT');
-    //this.cookieService.delete('JSESSIONID', '/', 'localhost');
     return this.http.get<void>(environment.apiBaseURL + '/logout');
   }
 
