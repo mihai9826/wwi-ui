@@ -1,0 +1,48 @@
+<nav class="navbar navbar-dark sticky-top navbar-expand-md bg-white portfolio-navbar gradient mb-3">
+  <a class="navbar-brand" href="#">WWi</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#">Pricing</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown link
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item mr-2" *ngIf="!userService.isUserLoggedIn()">
+        <button class="btn btn-sm btn-outline-primary navbar-text text-white" (click)="login()" style="width: 70px;">
+          Login
+        </button>
+      </li>
+      <li class="nav-item" *ngIf="!userService.isUserLoggedIn()">
+        <button class="btn btn-sm btn-outline-primary navbar-text text-white" [routerLink]="['/auth/register']" style="width: 80px;">
+          Register
+        </button>
+      </li>
+      <li class="nav-item" *ngIf="userService.isUserLoggedIn()">
+        <button class="btn btn-sm btn-outline-primary navbar-text text-white" (click)="logout()" style="width: 70px;">
+          Logout
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
