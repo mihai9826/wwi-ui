@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {faShoppingCart} from '@fortawesome/free-solid-svg-icons';
+import {ToastrService} from 'ngx-toastr';
 
 
 @Component({
@@ -11,9 +13,16 @@ export class ProductComponent implements OnInit {
   @Input() name: string;
   @Input() price: number;
   @Input() inStock: boolean;
-  constructor() { }
+
+  faShoppingCart = faShoppingCart;
+
+  constructor(private toastr: ToastrService) { }
 
   ngOnInit(): void {
+  }
+
+  addButtonClicked() {
+    this.toastr.success('Product added to shop chart', 'Success');
   }
 
 }
