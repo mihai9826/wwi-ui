@@ -46,6 +46,7 @@
     "ngx-tempusdominus-bootstrap": "^1.0.1",
     "ngx-toastr": "^12.0.0",
     "ngx-ui-switch": "^8.2.0",
+    "ngx-webstorage-service": "^4.1.0",
     "nouislider": "^14.0.3",
     "rxjs": "~6.5.4",
     "sweetalert2": "^9.5.3",

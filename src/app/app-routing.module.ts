@@ -14,6 +14,16 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'shopping-cart',
+    component: BaseLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./modules/shopping-cart/shopping-cart.module').then(mod => mod.ShoppingCartModule)
+      }
+    ]
+  },
+  {
     path: 'auth',
     component: BaseLayoutComponent,
     children: [

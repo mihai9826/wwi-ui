@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {faShoppingCart} from '@fortawesome/free-solid-svg-icons';
 import {ToastrService} from 'ngx-toastr';
+import {ShoppingCartService} from '../../../shopping-cart/service/shopping-cart.service';
+import {Product} from '../../../../shared/models/product/product';
 
 
 @Component({
@@ -16,12 +18,21 @@ export class ProductComponent implements OnInit {
 
   faShoppingCart = faShoppingCart;
 
-  constructor(private toastr: ToastrService) { }
+  constructor(private shoppingCartService: ShoppingCartService,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
 
   addButtonClicked() {
+    const selectedProduct = new Product({
+      stockItemId: this.id,
+      stockItemName: this.name,
+      unitPrice: this.price,
+      soldOut: this.inStock
+    });
+
+    this.shoppingCartService.addToCart(selectedProduct);
     this.toastr.success('Product added to shop chart', 'Success');
   }
 
