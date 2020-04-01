@@ -32,10 +32,6 @@ export class UserService {
       );
   }
 
-  registerUser(createUserReq: CreateUserRequest): Observable<void> {
-    return this.http.post<void>(environment.apiBaseURL + '/users', createUserReq);
-  }
-
   isUserLoggedIn(): boolean {
     return this.cookieService.check('JSESSIONID');
   }
@@ -43,6 +39,10 @@ export class UserService {
   login(user: LoginRequest): Observable<void> {
     const encodedPassword = encodeURIComponent(user.password);
     return this.http.post<void>(environment.apiBaseURL + `/login?username=${user.email}&password=${encodedPassword}`, '');
+  }
+
+  registerUser(createUserReq: CreateUserRequest): Observable<void> {
+    return this.http.post<void>(environment.apiBaseURL + '/users', createUserReq);
   }
 
   logout(): Observable<void> {

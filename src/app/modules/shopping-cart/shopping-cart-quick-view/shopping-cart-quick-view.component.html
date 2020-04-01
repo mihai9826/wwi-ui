@@ -39,7 +39,7 @@
       <td></td>
       <td></td>
       <td></td>
-      <td></td>
+      <td><button *ngIf="getRouter.routerState.snapshot.url.includes('/shopping-cart/step-1')" class="btn btn-outline-primary" [routerLink]="['/shopping-cart/step-2']">Next <fa-icon [icon]="faArrowRight" size="sm"></fa-icon></button></td>
     </tr>
     </tbody>
   </table>

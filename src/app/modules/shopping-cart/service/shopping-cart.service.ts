@@ -4,6 +4,9 @@ import {CreateOrderRequest} from '../../../shared/models/order/create-order-requ
 import {Product} from '../../../shared/models/product/product';
 import {LOCAL_STORAGE, StorageService} from 'ngx-webstorage-service';
 import {CreateOrderLineRequest} from '../../../shared/models/order/create-order-line-request';
+import {User} from '../../../shared/models/auth/user';
+import {Observable} from 'rxjs';
+import {environment} from '../../../../environments/environment';
 
 
 const STORAGE_KEY = 'cart';
@@ -45,4 +48,19 @@ export class ShoppingCartService {
     this.storageService.set(STORAGE_KEY, this.items);
   }
 
+  createNewOrder(): Observable<void> {
+    return this.http.post<void>(environment.apiBaseURL + '/client/orders', this.items);
+  }
+
+  setContactPerson(user: User) {
+    this.items.contactPerson = user;
+  }
+
+  setDeliveryAddress(address: string) {
+    this.items.deliveryAddress = address;
+  }
+
+  setComments(comments: string) {
+    this.items.comments = comments;
+  }
 }

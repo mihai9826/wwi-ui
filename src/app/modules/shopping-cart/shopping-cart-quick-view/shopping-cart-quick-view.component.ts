@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {CreateOrderRequest} from '../../../shared/models/order/create-order-request';
 import {ShoppingCartService} from '../service/shopping-cart.service';
-import {faTimesCircle} from '@fortawesome/free-solid-svg-icons';
+import {faArrowRight, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart-quick-view',
@@ -11,8 +12,14 @@ import {faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 export class ShoppingCartQuickViewComponent implements OnInit {
   items: CreateOrderRequest;
   faRemoveIcon = faTimesCircle;
+  faArrowRight = faArrowRight;
 
-  constructor(private cartService: ShoppingCartService) { }
+  get getRouter() {
+    return this.router;
+  }
+
+  constructor(private cartService: ShoppingCartService,
+              private router: Router) { }
 
   ngOnInit() {
     this.items = this.cartService.getAllItems();

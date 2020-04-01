@@ -5,7 +5,7 @@ import {Product} from '../product/product';
 export class CreateOrderRequest {
   contactPerson: User;
   orderLines: CreateOrderLineRequest[] = [];
-  comments?: string;
+  comments: string | null;
   deliveryAddress: string;
   orderValue: number;
 
