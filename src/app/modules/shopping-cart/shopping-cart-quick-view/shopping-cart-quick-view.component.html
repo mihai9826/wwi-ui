@@ -1,0 +1,46 @@
+<div class="container">
+  <table class="table table-hover bg-white">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col" class="px-0">Quantity</th>
+      <th scope="col">Unit price</th>
+      <th scope="col">In stock</th>
+      <th scope="col" class="text-center">Total price</th>
+      <th scope="col" class="text-center"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of items.orderLines; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{ item.stockItem.stockItemName }}
+      </td>
+      <td>
+      <select id="itemsPerPage" class="custom-select w-auto m-0" [selectedIndex]="item.quantity - 1"
+              (change)="onDropDownChange($event, i)">
+        <option [value]="1">1</option>
+        <option [value]="2" >2</option>
+        <option [value]="3">3</option>
+        <option [value]="4">4</option>
+        <option [value]="5">5</option>
+      </select>
+      </td>
+      <td>${{ item.stockItem.unitPrice | number }}</td>
+      <td>{{ item.stockItem.soldOut ? 'not available' : 'in stock' }}</td>
+      <td class="text-center">${{item.totalUnitPrice | number}}</td>
+      <td class="text-center"><fa-icon [icon]="faRemoveIcon" style="cursor: pointer;" size="sm" (click)="onRemoveTogglePress(i)"></fa-icon></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Total value: ${{this.orderValue()}}</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><button *ngIf="getRouter.routerState.snapshot.url.includes('/shopping-cart/step-1')" class="btn btn-outline-primary" [routerLink]="['/shopping-cart/step-2']">Next <fa-icon [icon]="faArrowRight" size="sm"></fa-icon></button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
