@@ -36,6 +36,10 @@ export class UserService {
     return this.cookieService.check('JSESSIONID');
   }
 
+  isUserClient(): boolean {
+    return this.currentUserSubject.getValue() && this.currentUserSubject.getValue().theUser.role === 'CLIENT';
+  }
+
   login(user: LoginRequest): Observable<void> {
     const encodedPassword = encodeURIComponent(user.password);
     return this.http.post<void>(environment.apiBaseURL + `/login?username=${user.email}&password=${encodedPassword}`, '');

@@ -5,11 +5,14 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="'active'">Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/shopping-cart/step-1']" [routerLinkActive]="'active'">Shoppingcart</a>
+      <li class="nav-item w-max-content">
+        <a class="nav-link" [routerLink]="['/shopping-cart/step-1']" [routerLinkActive]="'active'">Shopping cart</a>
+      </li>
+      <li *ngIf="userService.isUserClient()" class="nav-item w-max-content">
+        <a class="nav-link" [routerLink]="['/dc']" [routerLinkActive]="'active'">My orders</a>
       </li>
     </ul>
   </div>
