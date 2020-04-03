@@ -1,0 +1,23 @@
+<div class="container d-flex justify-content-center">
+  <table class="table table-hover bg-white w-75">
+    <thead class="">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Date</th>
+      <th scope="col" class="px-0">Value</th>
+      <th scope="col">Products No.</th>
+      <th scope="col">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of theOrders;">
+      <td>#{{order.orderId}}</td>
+      <td class="">{{order.orderDate | date: 'yyyy MMM dd HH:mm'}}</td>
+      <td>${{order.orderValue}}</td>
+      <td>{{order.orderLines.length}}</td>
+      <td>{{order.status}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

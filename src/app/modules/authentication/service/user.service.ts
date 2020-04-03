@@ -40,6 +40,10 @@ export class UserService {
     return this.currentUserSubject.getValue() && this.currentUserSubject.getValue().theUser.role === 'CLIENT';
   }
 
+  getUserId(): number {
+    return this.currentUserSubject.getValue().theUser.personId;
+  }
+
   login(user: LoginRequest): Observable<void> {
     const encodedPassword = encodeURIComponent(user.password);
     return this.http.post<void>(environment.apiBaseURL + `/login?username=${user.email}&password=${encodedPassword}`, '');
