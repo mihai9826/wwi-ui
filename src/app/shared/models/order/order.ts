@@ -5,8 +5,9 @@ export class Order {
   orderId: number;
   contactPerson: User;
   orderLines: OrderLine[];
-  comments?: string;
+  comments: string | null;
   deliveryAddress: string;
   orderValue: number;
+  status: string;
   orderDate: string;
 }
