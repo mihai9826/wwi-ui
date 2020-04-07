@@ -36,6 +36,10 @@ export class UserService {
     return this.cookieService.check('JSESSIONID');
   }
 
+  isUserAdmin(): boolean {
+    return this.currentUserSubject.getValue() && this.currentUserSubject.getValue().theUser.role === 'ADMIN';
+  }
+
   isUserClient(): boolean {
     return this.currentUserSubject.getValue() && this.currentUserSubject.getValue().theUser.role === 'CLIENT';
   }

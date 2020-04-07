@@ -1,0 +1,68 @@
+<div class="container">
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="form form-horizontal">
+    <div class="row">
+      <div class="form-group col-4">
+        <input type="text" class="form-control" placeholder="Order ID" formControlName="id">
+      </div>
+      <button type="submit" class="btn btn-primary col-2" style="height: 38px;" [disabled]="!searchForm.valid">
+        Search
+      </button>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-10">
+      <table class="table table-hover bg-white">
+        <thead class="">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Date</th>
+          <th scope="col" class="px-0">Value</th>
+          <th scope="col">Products No.</th>
+          <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="this.activeOrders">
+        <tr *ngFor="let order of activeOrders;">
+          <td>#{{order.orderId}}</td>
+          <td class="">{{order.orderDate | date: 'yyyy MMM dd HH:mm'}}</td>
+          <td>${{order.orderValue}}</td>
+          <td>{{order.orderLines.length}}</td>
+          <td>{{order.status}}</td>
+        </tr>
+        </tbody>
+        <tbody *ngIf="this.order">
+        <tr>
+          <td>#{{order.orderId}}</td>
+          <td class="">{{order.orderDate | date: 'yyyy MMM dd HH:mm'}}</td>
+          <td>${{order.orderValue}}</td>
+          <td>{{order.orderLines.length}}</td>
+          <td>{{order.status}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+    <div class="d-flex flex-column">
+      <select class="custom-select mb-4" (change)="onStatusChange($event)" [selectedIndex]="statusSelectIndex">
+        <option [disabled]="true">Status</option>
+        <option value="PENDING">PENDING</option>
+        <option value="PROCESSING">PROCESSING</option>
+      </select>
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="date"
+                 name="dp" (dateSelect)="onDateSelect($event)" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <div class="input-group-text"><fa-icon [icon]="faCalendar" style="cursor: pointer;" size="sm" (click)="d.toggle()"></fa-icon></div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-info" style="height: 38px;" (click)="clearFilters()">
+        Clear filters
+      </button>
+    </div>
+    </div>
+  </div>
+</div>
+
+

@@ -20,7 +20,7 @@ export class ShoppingCartQuickViewComponent implements OnInit {
 
   constructor(private cartService: ShoppingCartService,
               private router: Router) { }
-
+d
   ngOnInit() {
     this.items = this.cartService.getAllItems();
   }
