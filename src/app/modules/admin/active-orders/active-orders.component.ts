@@ -13,6 +13,7 @@ import {ArrayType} from '@angular/compiler';
   providers: [DatePipe]
 })
 export class ActiveOrdersComponent implements OnInit {
+  get id() { return this.searchForm.get('id'); }
   searchForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')])
   });

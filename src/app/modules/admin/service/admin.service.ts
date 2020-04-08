@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Order} from '../../../shared/models/order/order';
 import {environment} from '../../../../environments/environment';
+import {Page} from '../../../shared/models/product/product';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,13 @@ export class AdminService {
 
   getActiveOrderById(orderId: number): Observable<Order> {
     return this.http.get<Order>(environment.apiBaseURL + `/admin/orders/${orderId}/pending-processing`);
+  }
+
+  getDispatchedOrders(page: number, size: number): Observable<Page<Order>> {
+    return this.http.get<Page<Order>>(environment.apiBaseURL + `/admin/orders/dispatched?page=${page}&size=${size}`);
+  }
+
+  getDispatchedOrderOfId(id: number): Observable<Order> {
+    return this.http.get<Order>(environment.apiBaseURL + `/admin/orders/${id}/dispatched`);
   }
 }
