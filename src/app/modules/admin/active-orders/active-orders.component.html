@@ -21,15 +21,26 @@
           <th scope="col" class="px-0">Value</th>
           <th scope="col">Products No.</th>
           <th scope="col">Status</th>
+          <th></th>
         </tr>
         </thead>
         <tbody *ngIf="this.activeOrders">
-        <tr *ngFor="let order of activeOrders;">
+        <tr *ngFor="let order of activeOrders; index as i">
           <td>#{{order.orderId}}</td>
           <td class="">{{order.orderDate | date: 'yyyy MMM dd HH:mm'}}</td>
           <td>${{order.orderValue}}</td>
           <td>{{order.orderLines.length}}</td>
           <td>{{order.status}}</td>
+          <td>
+            <div ngbDropdown calss="btn-group dropright">
+              <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle>Status</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownConfig" class="dropdown-menu-right">
+                <button class="btn-sm" (click)="changeStatusToPending(order.orderId, i)" ngbDropdownItem>PENDING</button>
+                <button class="btn-sm" (click)="changeStatusToProcessing(order.orderId, i)" ngbDropdownItem>PROCESSING</button>
+                <button class="btn-sm" (click)="changeStatusToDispatched(order.orderId, i)" ngbDropdownItem>DISPATCHED</button>
+              </div>
+            </div>
+          </td>
         </tr>
         </tbody>
         <tbody *ngIf="this.order">
@@ -39,6 +50,16 @@
           <td>${{order.orderValue}}</td>
           <td>{{order.orderLines.length}}</td>
           <td>{{order.status}}</td>
+          <td>
+            <div ngbDropdown calss="btn-group dropright">
+              <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle>Status</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownConfig" class="dropdown-menu-right">
+                <button class="btn-sm" (click)="changeStatusToPending(order.orderId, 0)" ngbDropdownItem>PENDING</button>
+                <button class="btn-sm" (click)="changeStatusToProcessing(order.orderId, 0)" ngbDropdownItem>PROCESSING</button>
+                <button class="btn-sm" (click)="changeStatusToDispatched(order.orderId, 0)" ngbDropdownItem>DISPATCHED</button>
+              </div>
+            </div>
+          </td>
         </tr>
         </tbody>
       </table>

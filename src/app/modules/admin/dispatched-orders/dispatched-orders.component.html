@@ -34,11 +34,11 @@
         </tbody>
         <tbody *ngIf="!displayList">
         <tr>
-          <td>#{{dispatchedOrderOfId.orderId}}</td>
-          <td class="">{{dispatchedOrderOfId.orderDate | date: 'yyyy MMM dd HH:mm'}}</td>
-          <td>${{dispatchedOrderOfId.orderValue}}</td>
-          <td>{{dispatchedOrderOfId.orderLines.length}}</td>
-          <td>{{dispatchedOrderOfId.status}}</td>
+          <td>#{{dispatchedOrderOfId?.orderId}}</td>
+          <td class="">{{dispatchedOrderOfId?.orderDate | date: 'yyyy MMM dd HH:mm'}}</td>
+          <td>${{dispatchedOrderOfId?.orderValue}}</td>
+          <td>{{dispatchedOrderOfId?.orderLines.length}}</td>
+          <td>{{dispatchedOrderOfId?.status}}</td>
         </tr>
         </tbody>
       </table>

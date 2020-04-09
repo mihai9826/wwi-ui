@@ -41,4 +41,17 @@ export class AdminService {
   getDispatchedOrderOfId(id: number): Observable<Order> {
     return this.http.get<Order>(environment.apiBaseURL + `/admin/orders/${id}/dispatched`);
   }
+
+  setOrderStatusPending(id: number): Observable<Order> {
+    return this.http.put<Order>(environment.apiBaseURL + `/admin/orders/${id}/pending`, null);
+  }
+
+  setOrderStatusProcessing(id: number): Observable<Order> {
+    return this.http.put<Order>(environment.apiBaseURL + `/admin/orders/${id}/processing`, null);
+  }
+
+  setOrderStatusDispatched(id: number): Observable<Order> {
+    return this.http.put<Order>(environment.apiBaseURL + `/admin/orders/${id}/dispatched`, null);
+  }
+
 }
