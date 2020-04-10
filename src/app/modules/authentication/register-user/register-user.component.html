@@ -10,39 +10,38 @@
                 <div class="form-group">
                   <label for="username" class="label-control">Full Name</label>
                   <input id="username" type="text" class="form-control" placeholder="Full name" formControlName="fullName">
-                  <label class="text-danger" *ngIf="fullName.touched && fullName.hasError('required')">Error</label>
-                  <label class="text-danger" *ngIf="fullName.hasError('minlength')">Error</label>
+                  <label class="text-danger" *ngIf="fullName.touched && fullName.hasError('required')">Full name is required</label>
+                  <label class="text-danger" *ngIf="fullName.hasError('minlength')">Minim 4 characters</label>
                 </div>
                 <div class="form-group">
                   <label for="email" class="label-control">Email</label>
                   <input id="email" type="text" class="form-control" placeholder="Email" formControlName="email">
-                  <label class="text-danger" *ngIf="email.touched && email.hasError('required')">Error</label>
-                  <label class="text-danger" *ngIf="email.hasError('email')">Error</label>
+                  <label class="text-danger" *ngIf="email.touched && email.hasError('required')">Email is required</label>
+                  <label class="text-danger" *ngIf="email.hasError('email')">Not a valid email</label>
                 </div>
                 <div class="form-group">
                   <label for="deliveryAddress" class="label-control">Delivery Address</label>
                   <input id="deliveryAddress" type="text" class="form-control" placeholder="Delivery Address" formControlName="deliveryAddress">
-                  <label class="text-danger" *ngIf="deliveryAddress.touched && deliveryAddress.hasError('required')">Error</label>
+                  <label class="text-danger" *ngIf="deliveryAddress.touched && deliveryAddress.hasError('required')">Delivery address is required</label>
                 </div>
                 <div class="form-group">
                   <label for="phoneNumber" class="label-control">Phone Number</label>
                   <input id="phoneNumber" type="text" class="form-control" placeholder="Phone Number" formControlName="phoneNumber">
-                  <label class="text-danger" *ngIf="phoneNumber.touched && phoneNumber.hasError('required')">Error</label>
+                  <label class="text-danger" *ngIf="phoneNumber.touched && phoneNumber.hasError('required')">Phone number is required</label>
                 </div>
                 <div class="form-group">
                   <label for="password" class="label-control">Password</label>
                   <input id="password" type="password" class="form-control" placeholder="Password" formControlName="password">
-                  <label class="text-danger" *ngIf="password.touched && password.hasError('required')">Error</label>
-                  <label class="text-danger" *ngIf="password.hasError('minlength')">Error</label>
+                  <label class="text-danger" *ngIf="password.touched && password.hasError('required')">Password is required</label>
+                  <label class="text-danger" *ngIf="password.hasError('minlength')">Must contain at least 6 characters</label>
                 </div>
                 <div class="form-group">
                   <label for="reenteredPassword" class="label-control">Confirm password</label>
                   <input id="reenteredPassword" type="password" class="form-control" placeholder="Confirm password" formControlName="reenteredPassword">
-                  <label class="text-danger" *ngIf="reenteredPassword.touched && password.hasError('required')">Error</label>
-                  <label class="text-danger" *ngIf="reenteredPassword.hasError('minlength')">Error</label>
+                  <label class="text-danger" *ngIf="reenteredPassword.touched && password.hasError('required')">Required to validate password</label>
                 </div>
                 <div class="form-group">
-                  <label class="text-danger" *ngIf="registerUserForm.errors?.NoPasswordMatch">Passwords doesn't match</label>
+                  <label class="text-danger" *ngIf="registerUserForm.errors?.NoPasswordMatch">Password doesn't match</label>
                 </div>
 
 
