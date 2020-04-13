@@ -54,4 +54,7 @@ export class AdminService {
     return this.http.put<Order>(environment.apiBaseURL + `/admin/orders/${id}/dispatched`, null);
   }
 
+  getClientOrderById(currentOrderId: string): Observable<Order> {
+    return this.http.get<Order>(environment.apiBaseURL + `/admin/orders/${currentOrderId}`);
+  }
 }

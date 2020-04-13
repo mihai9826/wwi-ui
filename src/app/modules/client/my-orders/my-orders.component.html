@@ -11,7 +11,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let order of theOrders;">
-      <td>#{{order.orderId}}</td>
+      <td><a style="cursor: pointer;" routerLink="/client/orders/{{order.orderId}}">#{{order.orderId}}</a></td>
       <td class="">{{order.orderDate | date: 'yyyy MMM dd HH:mm'}}</td>
       <td>${{order.orderValue}}</td>
       <td>{{order.orderLines.length}}</td>

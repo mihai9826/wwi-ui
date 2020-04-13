@@ -25,7 +25,7 @@
         </thead>
         <tbody *ngIf="displayList">
         <tr *ngFor="let order of dispatchedOrders;">
-          <td>#{{order.orderId}}</td>
+          <td><a style="cursor: pointer;" routerLink="/admin/orders/{{order.orderId}}">#{{order.orderId}}</a></td>
           <td class="">{{order.orderDate | date: 'yyyy MMM dd HH:mm'}}</td>
           <td>${{order.orderValue}}</td>
           <td>{{order.orderLines.length}}</td>
@@ -34,7 +34,7 @@
         </tbody>
         <tbody *ngIf="!displayList">
         <tr>
-          <td>#{{dispatchedOrderOfId?.orderId}}</td>
+          <td><a style="cursor: pointer;" routerLink="/admin/orders/{{dispatchedOrderOfId?.orderId}}">#{{dispatchedOrderOfId?.orderId}}</a></td>
           <td class="">{{dispatchedOrderOfId?.orderDate | date: 'yyyy MMM dd HH:mm'}}</td>
           <td>${{dispatchedOrderOfId?.orderValue}}</td>
           <td>{{dispatchedOrderOfId?.orderLines.length}}</td>
@@ -60,6 +60,7 @@
                       [(page)]="page"
                       [rotate]="true"
                       [boundaryLinks]="true"
+                      [maxSize]="20"
                       (pageChange)="loadPage($event)"></ngb-pagination>
     </div>
   </div>

@@ -1,0 +1,51 @@
+<div class="container">
+  <table class="table table-hover bg-white">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col" class="px-0">Quantity</th>
+      <th scope="col">Unit price</th>
+      <th scope="col" class="text-center">Total price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of orderOfId.orderLines; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{ item.stockItem.stockItemName }}
+      </td>
+      <td>
+        <select id="itemsPerPage" class="custom-select w-auto m-0">
+          <option [disabled]="true">{{item.quantity}}</option>
+        </select>
+      </td>
+      <td>${{ item.stockItem.unitPrice | number }}</td>
+      <td class="text-center">${{item.totalUnitPrice | number}}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Total value: ${{orderOfId.orderValue}}</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="container bg-white mt-5 p-4" style="height: 95px;">
+    <div class="input-group input-group-lg">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-lg">Delivery Address</span>
+      </div>
+      <input type="text" [value]="orderOfId.deliveryAddress" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+    </div>
+  </div>
+  <div class="container bg-white mt-5 p-4 text-center" style="height: 170px;">
+    <div class="input-group input-group-lg">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Comments</span>
+      </div>
+      <textarea class="form-control" aria-label="Comments">{{orderOfId.comments ? orderOfId.comments : 'Not specified'}}</textarea>
+    </div>
+  </div>
+</div>

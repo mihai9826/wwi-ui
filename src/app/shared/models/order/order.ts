@@ -4,7 +4,7 @@ import {OrderLine} from './order-line';
 export class Order {
   orderId: number;
   contactPerson: User;
-  orderLines: OrderLine[];
+  orderLines: OrderLine[] = [];
   comments: string | null;
   deliveryAddress: string;
   orderValue: number;
