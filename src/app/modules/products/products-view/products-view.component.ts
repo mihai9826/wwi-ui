@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {ProductsService} from '../services/products.service';
 import {Product, ProductCategory} from '../../../shared/models/product/product';
@@ -17,7 +17,9 @@ export class ProductsViewComponent implements OnInit {
   totalElements;
   page = 1;
   previousPage;
-  constructor(private productsService: ProductsService) { }
+
+  constructor(private productsService: ProductsService) {
+  }
 
   ngOnInit(): void {
     this.loadData();
@@ -59,4 +61,36 @@ export class ProductsViewComponent implements OnInit {
     this.loadData(this.categoryId);
   }
 
+  sortDropDownChange(event: any) {
+    if (this.categoryId) {
+      if (event.target.value === '') {
+        this.productsService.getProductsOfCategory(this.categoryId, this.page - 1, this.itemsPerPage).subscribe(data => {
+          this.allProducts = data.content;
+          this.totalElements = data.totalElements;
+          this.itemsPerPage = data.size;
+        });
+      } else {
+        this.productsService.sortProductsOfCategory(event.target.value, this.categoryId, this.page - 1, this.itemsPerPage)
+          .subscribe(data => {
+            this.allProducts = data.content;
+            this.totalElements = data.totalElements;
+            this.itemsPerPage = data.size;
+          });
+      }
+    } else {
+      if (event.target.value === '') {
+        this.productsService.getAllProducts(this.page - 1, this.itemsPerPage).subscribe(data => {
+          this.allProducts = data.content;
+          this.totalElements = data.totalElements;
+          this.itemsPerPage = data.size;
+        });
+      } else {
+        this.productsService.sortAllProductsByPrice(event.target.value, this.page - 1, this.itemsPerPage).subscribe(data => {
+          this.allProducts = data.content;
+          this.totalElements = data.totalElements;
+          this.itemsPerPage = data.size;
+        });
+      }
+    }
+  }
 }

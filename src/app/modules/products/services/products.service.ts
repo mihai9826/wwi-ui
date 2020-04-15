@@ -16,8 +16,16 @@ export class ProductsService {
       return this.http.get<Page<Product>>(this.REQ_URL + `items?page=${page}&size=${size}`);
   }
 
+  sortAllProductsByPrice(direction: string, page: number, size: number): Observable<Page<Product>> {
+    return this.http.get<Page<Product>>(this.REQ_URL + `items?sortPrice=${direction}&page=${page}&size=${size}`);
+  }
+
   getProductsOfCategory(id: number, page: number, size: number): Observable<Page<Product>> {
     return this.http.get<Page<Product>>(this.REQ_URL + `stock/groups/${id}/items?page=${page}&size=${size}`);
+  }
+
+  sortProductsOfCategory(direction: string, id: number, page: number, size: number): Observable<Page<Product>> {
+    return this.http.get<Page<Product>>(this.REQ_URL + `stock/groups/${id}/items?sortPrice=${direction}&page=${page}&size=${size}`);
   }
 
   getProductCategories(): Observable<ProductCategory[]> {
