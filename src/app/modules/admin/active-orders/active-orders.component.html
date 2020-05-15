@@ -1,0 +1,91 @@
+<div class="container">
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="form form-horizontal">
+    <div class="row">
+      <div class="form-group col-4">
+        <input type="text" class="form-control" placeholder="Order ID" formControlName="id">
+        <label class="text-danger" *ngIf="id.touched && id.hasError('required')">Error</label>
+        <label class="text-danger" *ngIf="id.hasError('pattern')">Only numbers</label>
+      </div>
+      <button type="submit" class="btn btn-primary col-2" style="height: 38px;" [disabled]="!searchForm.valid">
+        Search
+      </button>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-10">
+      <table class="table table-hover bg-white">
+        <thead class="">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Date</th>
+          <th scope="col" class="px-0">Value</th>
+          <th scope="col">Products No.</th>
+          <th scope="col">Status</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody *ngIf="this.activeOrders">
+        <tr *ngFor="let order of activeOrders; index as i">
+          <td><a style="cursor: pointer;" routerLink="/admin/orders/{{order.orderId}}">#{{order.orderId}}</a></td>
+          <td class="">{{order.orderDate | date: 'yyyy MMM dd HH:mm'}}</td>
+          <td>${{order.orderValue}}</td>
+          <td>{{order.orderLines.length}}</td>
+          <td>{{order.status}}</td>
+          <td>
+            <div ngbDropdown calss="btn-group dropright">
+              <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle>Status</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownConfig" class="dropdown-menu-right">
+                <button class="btn-sm" (click)="changeStatusToPending(order.orderId, i)" ngbDropdownItem>PENDING</button>
+                <button class="btn-sm" (click)="changeStatusToProcessing(order.orderId, i)" ngbDropdownItem>PROCESSING</button>
+                <button class="btn-sm" (click)="changeStatusToDispatched(order.orderId, i)" ngbDropdownItem>DISPATCHED</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+        <tbody *ngIf="this.order">
+        <tr>
+          <td><a style="cursor: pointer;" routerLink="/admin/orders/{{order.orderId}}">#{{order.orderId}}</a></td>
+          <td class="">{{order.orderDate | date: 'yyyy MMM dd HH:mm'}}</td>
+          <td>${{order.orderValue}}</td>
+          <td>{{order.orderLines.length}}</td>
+          <td>{{order.status}}</td>
+          <td>
+            <div ngbDropdown calss="btn-group dropright">
+              <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle>Status</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownConfig" class="dropdown-menu-right">
+                <button class="btn-sm" (click)="changeStatusToPending(order.orderId, 0)" ngbDropdownItem>PENDING</button>
+                <button class="btn-sm" (click)="changeStatusToProcessing(order.orderId, 0)" ngbDropdownItem>PROCESSING</button>
+                <button class="btn-sm" (click)="changeStatusToDispatched(order.orderId, 0)" ngbDropdownItem>DISPATCHED</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+    <div class="d-flex flex-column">
+      <select class="custom-select mb-4" (change)="onStatusChange($event)" [selectedIndex]="statusSelectIndex">
+        <option [disabled]="true">Status</option>
+        <option value="PENDING">PENDING</option>
+        <option value="PROCESSING">PROCESSING</option>
+      </select>
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="date"
+                 name="dp" (dateSelect)="onDateSelect($event)" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <div class="input-group-text"><fa-icon [icon]="faCalendar" style="cursor: pointer;" size="sm" (click)="d.toggle()"></fa-icon></div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-info" style="height: 38px;" (click)="clearFilters()">
+        Clear filters
+      </button>
+    </div>
+    </div>
+  </div>
+</div>
+
+

@@ -3,8 +3,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CreateUserRequest} from '../../../shared/models/auth/create-user-request';
 import {UserService} from '../service/user.service';
 import {Router} from '@angular/router';
-import {faCheckSquare, faCoffee, faPaperPlane} from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import {PasswordMatchValidator} from '../password-match.validator';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-register-user',
@@ -32,6 +33,7 @@ export class RegisterUserComponent implements OnInit {
   faPaperPlane = faPaperPlane;
 
   constructor(private userService: UserService,
+              private toastr: ToastrService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -51,6 +53,12 @@ export class RegisterUserComponent implements OnInit {
 
     this.userService.registerUser(createUserRequest).subscribe(
       () => this.router.navigate(['home'])
+        .then(_ => this.toastr.success('Successful registration', 'OK')),
+      error => {
+          if (error.error.message.includes('User with this email')) {
+            this.toastr.warning('Email is already taken', 'Warning');
+          }
+      }
     );
   }
 

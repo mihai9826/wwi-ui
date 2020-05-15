@@ -18,4 +18,8 @@ export class ClientService {
     return this.http.get<Order[]>(environment.apiBaseURL + `/client/${clientId}/orders`);
   }
 
+  getClientOrderById(id: string): Observable<Order> {
+    return this.http.get<Order>(environment.apiBaseURL + `/client/orders/${id}`);
+  }
+
 }

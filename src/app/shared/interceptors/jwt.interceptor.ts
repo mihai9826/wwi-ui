@@ -26,9 +26,7 @@ export class JwtInterceptor implements HttpInterceptor {
     if (response.status === 401 || response.status === 403) {
       this.cookieService.delete('JSESSIONID', '/', 'localhost', false, 'Lax');
     }
-    // if (response.url.includes('http://localhost:8080/login')) {
-    //   this.router.navigate(['auth/login']);
-    // }
+
     return throwError(response);
   }
 }

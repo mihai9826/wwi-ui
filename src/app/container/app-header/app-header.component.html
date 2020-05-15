@@ -12,7 +12,13 @@
         <a class="nav-link" [routerLink]="['/shopping-cart/step-1']" [routerLinkActive]="'active'">Shopping cart</a>
       </li>
       <li *ngIf="userService.isUserClient()" class="nav-item w-max-content">
-        <a class="nav-link" [routerLink]="['/dc']" [routerLinkActive]="'active'">My orders</a>
+        <a class="nav-link" [routerLink]="['/client/orders']" [routerLinkActive]="'active'">My orders</a>
+      </li>
+      <li *ngIf="userService.isUserAdmin()" class="nav-item w-max-content">
+        <a class="nav-link" [routerLink]="['/admin/dispatched-orders']" [routerLinkActive]="'active'">Dispatched orders</a>
+      </li>
+      <li *ngIf="userService.isUserAdmin()" class="nav-item w-max-content">
+        <a class="nav-link" [routerLink]="['/admin/active-orders']" [routerLinkActive]="'active'">Active orders</a>
       </li>
     </ul>
   </div>

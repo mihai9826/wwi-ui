@@ -14,8 +14,8 @@ export class ProductCategory {
   stockGroupName: string;
 }
 
-export class ProductPage {
-  content: Product[];
+export class Page<T> {
+  content: T[];
   totalElements: number;
   totalPages: number;
   size: number;

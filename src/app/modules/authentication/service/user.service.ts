@@ -7,6 +7,8 @@ import {environment} from '../../../../environments/environment';
 import {map} from 'rxjs/operators';
 import {LoginRequest} from '../../../shared/models/auth/login-request';
 import {CreateUserRequest} from '../../../shared/models/auth/create-user-request';
+import {PasswordTokenInitializationRequest} from '../../../shared/models/auth/password-token-initialization-request';
+import {PasswordTokenConfirmationRequest} from '../../../shared/models/auth/password-token-confirmation-request';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +38,10 @@ export class UserService {
     return this.cookieService.check('JSESSIONID');
   }
 
+  isUserAdmin(): boolean {
+    return this.currentUserSubject.getValue() && this.currentUserSubject.getValue().theUser.role === 'ADMIN';
+  }
+
   isUserClient(): boolean {
     return this.currentUserSubject.getValue() && this.currentUserSubject.getValue().theUser.role === 'CLIENT';
   }
@@ -51,6 +57,14 @@ export class UserService {
 
   registerUser(createUserReq: CreateUserRequest): Observable<void> {
     return this.http.post<void>(environment.apiBaseURL + '/users', createUserReq);
+  }
+
+  createPasswordToken(passwordToken: PasswordTokenInitializationRequest): Observable<void> {
+    return this.http.post<void>(environment.apiBaseURL + '/password-token', passwordToken);
+  }
+
+  confirmPasswordReset(passwordResetConfirmationRequest: PasswordTokenConfirmationRequest, token: string): Observable<void> {
+    return this.http.put<void>(environment.apiBaseURL + `/password?token=${token}`, passwordResetConfirmationRequest);
   }
 
   logout(): Observable<void> {
