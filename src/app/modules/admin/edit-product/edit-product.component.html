@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row m-0">
+    <div class="col-12 d-flex align-items-center justify-content-center">
+      <div class="card col-10 col-xs-12">
+        <div class="card-content">
+          <div class="p-5">
+            <form [formGroup]="editProductForm" (ngSubmit)="onSubmit()" class="form form-horizontal">
+              <div class="form-body">
+                <h4 class="form-section text-center"><i class="ft-person"></i>Edit the product</h4>
+                <div class="form-group">
+                  <label for="productId" class="label-control">ID</label>
+                  <input id="productId" type="text" class="form-control" formControlName="productId" [readOnly]="true">
+<!--                  <label class="text-danger" *ngIf="fullName.touched && fullName.hasError('required')">Full name is required</label>-->
+<!--                  <label class="text-danger" *ngIf="fullName.hasError('minlength')">Minim 4 characters</label>-->
+                </div>
+                <div class="form-group">
+                  <label for="productName" class="label-control">Product name</label>
+                  <input id="productName" type="text" class="form-control" formControlName="productName">
+<!--                  <label class="text-danger" *ngIf="email.touched && email.hasError('required')">Email is required</label>-->
+<!--                  <label class="text-danger" *ngIf="email.hasError('email')">Not a valid email</label>-->
+                </div>
+                <div class="form-group">
+                  <label for="unitPrice" class="label-control">Unit price</label>
+                  <input id="unitPrice" type="text" class="form-control" formControlName="unitPrice">
+<!--                  <label class="text-danger" *ngIf="deliveryAddress.touched && deliveryAddress.hasError('required')">Delivery address is required</label>-->
+                </div>
+                <div class="form-group">
+                  <label for="weightPerUnit" class="label-control">Weight</label>
+                  <input id="weightPerUnit" type="text" class="form-control" formControlName="weightPerUnit">
+<!--                  <label class="text-danger" *ngIf="phoneNumber.touched && phoneNumber.hasError('required')">Phone number is required</label>-->
+                </div>
+                <div class="form-group">
+                  <label for="stockQuantity" class="label-control">Available quantity</label>
+                  <input id="stockQuantity" type="text" class="form-control" formControlName="stockQuantity">
+                  <!--                  <label class="text-danger" *ngIf="phoneNumber.touched && phoneNumber.hasError('required')">Phone number is required</label>-->
+                </div>
+
+                <div class="form-actions center">
+                  <button type="submit" class="btn btn-raised mr-1 btn-primary" [disabled]="!editProductForm.valid">
+<!--                    <fa-icon [icon]="faPaperPlane"></fa-icon>-->
+                    Update
+                  </button>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

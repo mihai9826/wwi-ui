@@ -19,12 +19,17 @@
                     <label for="email">Password</label>
                     <input type="password" class="form-control mb-3" placeholder="Password" formControlName="password"/>
                   </div>
-                  <div class="fg-actions text-right">
-                    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">
-                      <p class="text-decoration-none text-white mb-0">Login</p>
-
-                    </button>
+                  <div class="d-flex justify-content-between">
+                    <div class="pt-1">
+                      <a [routerLink]="['/auth/forgot-password']">Forgot password ?</a>
+                    </div>
+                    <div class="fg-actions">
+                      <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">
+                        <p class="text-decoration-none text-white mb-0">Login</p>
+                      </button>
+                    </div>
                   </div>
+
                 </form>
               </div>
             </div>

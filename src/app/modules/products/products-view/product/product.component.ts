@@ -3,6 +3,7 @@ import {faShoppingCart} from '@fortawesome/free-solid-svg-icons';
 import {ToastrService} from 'ngx-toastr';
 import {ShoppingCartService} from '../../../shopping-cart/service/shopping-cart.service';
 import {Product} from '../../../../shared/models/product/product';
+import {UserService} from '../../../authentication/service/user.service';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class ProductComponent implements OnInit {
   faShoppingCart = faShoppingCart;
 
   constructor(private shoppingCartService: ShoppingCartService,
+              public userService: UserService,
               private toastr: ToastrService) { }
 
   ngOnInit(): void {

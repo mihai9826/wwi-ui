@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {ActiveOrdersComponent} from './active-orders/active-orders.component';
 import {DispatchedOrdersComponent} from './dispatched-orders/dispatched-orders.component';
 import {AdminOrderDetailsComponent} from './admin-order-details/admin-order-details.component';
+import {EditProductComponent} from './edit-product/edit-product.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'orders/:id',
     component: AdminOrderDetailsComponent
+  },
+  {
+    path: 'product/:id',
+    component: EditProductComponent
   }
 ];
 
