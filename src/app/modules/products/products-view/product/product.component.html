@@ -1,6 +1,6 @@
 <div class="card border-info" style="width: 18rem;">
   <div class="card-header bg-transparent border-info h4">{{ (name.length>36)? (name | slice:0:36)+'...':(name) }}</div>
-  <img class="card-img-top" src="http://placehold.jp/286x180.png" alt="Card image cap">
+  <img class="card-img-top" [src]="'assets/img/imageui.png'" [alt]="'placeholder'">
   <div class="card-body">
     <p class="card-text">Ceva text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, unde.</p>
   </div>

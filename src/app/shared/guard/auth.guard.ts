@@ -25,7 +25,11 @@ export class AuthGuard implements CanActivate {
           err => {
             if (err instanceof HttpErrorResponse) {
               if (err.status === 401) {
-                this.router.navigate(['/auth/login']);
+                this.router.navigate(['/auth/login'], {
+                  queryParams: {
+                    redirect: state.url
+                  }
+                });
               } else if (err.status === 404) {
                 this.router.navigate(['/auth/404']);
               }

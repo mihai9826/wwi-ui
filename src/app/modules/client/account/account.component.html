@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row m-0">
+    <div class="col-12 d-flex align-items-center justify-content-center">
+      <div class="card col-10 col-xs-12">
+        <div class="card-content">
+          <div class="p-5">
+            <form [formGroup]="editUserDataForm" (ngSubmit)="onSubmit()" class="form form-horizontal">
+              <div class="form-body">
+                <h4 class="form-section text-center"><i class="ft-person"></i>Edit your data</h4>
+                <div class="form-group">
+                  <label for="fullName" class="label-control">Full name</label>
+                  <input id="fullName" type="text" class="form-control" formControlName="fullName">
+                  <!--                  <label class="text-danger" *ngIf="email.touched && email.hasError('required')">Email is required</label>-->
+                  <!--                  <label class="text-danger" *ngIf="email.hasError('email')">Not a valid email</label>-->
+                </div>
+                <div class="form-group">
+                  <label for="emailAddress" class="label-control">Email address</label>
+                  <input id="emailAddress" type="text" class="form-control" formControlName="emailAddress">
+                  <!--                  <label class="text-danger" *ngIf="deliveryAddress.touched && deliveryAddress.hasError('required')">Delivery address is required</label>-->
+                </div>
+                <div class="form-group">
+                  <label for="deliveryAddress" class="label-control">Delivery address</label>
+                  <input id="deliveryAddress" type="text" class="form-control" formControlName="deliveryAddress">
+                  <!--                  <label class="text-danger" *ngIf="phoneNumber.touched && phoneNumber.hasError('required')">Phone number is required</label>-->
+                </div>
+                <div class="form-group">
+                  <label for="phoneNumber" class="label-control">Phone number</label>
+                  <input id="phoneNumber" type="text" class="form-control" formControlName="phoneNumber">
+                  <!--                  <label class="text-danger" *ngIf="phoneNumber.touched && phoneNumber.hasError('required')">Phone number is required</label>-->
+                </div>
+                <div class="form-group">
+                  <label for="password" class="label-control">Password</label>
+                  <input id="password" type="password" class="form-control" formControlName="password" placeholder="Retype or change your password here">
+                  <!--                  <label class="text-danger" *ngIf="phoneNumber.touched && phoneNumber.hasError('required')">Phone number is required</label>-->
+                </div>
+
+                <div class="form-actions center">
+                  <button type="submit" class="btn btn-raised mr-1 btn-primary" [disabled]="!editUserDataForm.valid">
+                    Update
+                  </button>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

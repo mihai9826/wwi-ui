@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {UserPrincipal} from '../../../shared/models/auth/user-principal';
 import {HttpClient} from '@angular/common/http';
@@ -9,6 +9,7 @@ import {LoginRequest} from '../../../shared/models/auth/login-request';
 import {CreateUserRequest} from '../../../shared/models/auth/create-user-request';
 import {PasswordTokenInitializationRequest} from '../../../shared/models/auth/password-token-initialization-request';
 import {PasswordTokenConfirmationRequest} from '../../../shared/models/auth/password-token-confirmation-request';
+import {EditUserRequest} from '../../../shared/models/auth/edit-user-request';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,10 @@ export class UserService {
 
   registerUser(createUserReq: CreateUserRequest): Observable<void> {
     return this.http.post<void>(environment.apiBaseURL + '/users', createUserReq);
+  }
+
+  editUserData(id: number, editUserRequest: EditUserRequest): Observable<void> {
+    return this.http.put<void>(environment.apiBaseURL + `/users/${id}`, editUserRequest);
   }
 
   createPasswordToken(passwordToken: PasswordTokenInitializationRequest): Observable<void> {

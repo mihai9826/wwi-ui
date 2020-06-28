@@ -9,6 +9,7 @@ import {CookieService} from 'ngx-cookie-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserModule} from '@angular/platform-browser';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -16,9 +17,9 @@ import {BrowserModule} from '@angular/platform-browser';
   ],
   imports: [
     AppRoutingModule,
-    BrowserModule,
-    BrowserAnimationsModule,
     CoreModule,
+    BrowserAnimationsModule,
+    CommonModule,
     ToastrModule.forRoot()
   ],
   providers: [

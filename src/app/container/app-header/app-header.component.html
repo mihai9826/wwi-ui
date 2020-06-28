@@ -14,6 +14,9 @@
       <li *ngIf="userService.isUserClient()" class="nav-item w-max-content">
         <a class="nav-link" [routerLink]="['/client/orders']" [routerLinkActive]="'active'">My orders</a>
       </li>
+      <li *ngIf="userService.isUserClient()" class="nav-item w-max-content">
+        <a class="nav-link" [routerLink]="['/client/account']" [routerLinkActive]="'active'">Account</a>
+      </li>
       <li *ngIf="userService.isUserAdmin()" class="nav-item w-max-content">
         <a class="nav-link" [routerLink]="['/admin/dispatched-orders']" [routerLinkActive]="'active'">Dispatched orders</a>
       </li>
