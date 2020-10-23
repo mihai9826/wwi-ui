@@ -11,6 +11,7 @@ import {UserPrincipal} from '../../shared/models/auth/user-principal';
 export class AppHeaderComponent implements OnInit {
   user: UserPrincipal;
   open = false;
+  cartHover = false;
 
   constructor(private router: Router,
               public userService: UserService) { }
@@ -31,6 +32,10 @@ export class AppHeaderComponent implements OnInit {
   logout() {
     this.userService.logout().subscribe();
     this.router.navigate(['auth', 'login']);
+  }
+
+  switchCartPreview(oldState: boolean) {
+    this.cartHover = !oldState;
   }
 
 }

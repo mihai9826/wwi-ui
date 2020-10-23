@@ -8,7 +8,8 @@
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="'active'">Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item w-max-content">
+      <li class="nav-item w-max-content" (mouseenter)="switchCartPreview(this.cartHover)"
+          (mouseleave)="switchCartPreview(this.cartHover)">
         <a class="nav-link" [routerLink]="['/shopping-cart/step-1']" [routerLinkActive]="'active'">Shopping cart</a>
       </li>
       <li *ngIf="userService.isUserClient()" class="nav-item w-max-content">
@@ -45,3 +46,5 @@
     </ul>
   </div>
 </nav>
+
+<app-cart-hover [display]="this.cartHover"></app-cart-hover>

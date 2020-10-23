@@ -6,3 +6,9 @@ nav.gradient {
 nav.portfolio-navbar {
   box-shadow: 0 4px 10px rgba(0,0,0,.2);
 }
+
+app-cart-hover{
+  position: absolute;
+  z-index: 1;
+  margin-left: 75%;
+}
