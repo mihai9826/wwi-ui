@@ -19,7 +19,8 @@ const APP_COMPONENTS = [AppHeaderComponent, CartHoverComponent];
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   declarations: [
     ...APP_CONTAINERS,

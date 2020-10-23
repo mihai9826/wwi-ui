@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark navbar-expand-md bg-white portfolio-navbar gradient mb-3 text-light">
+<nav class="navbar navbar-dark navbar-expand-md portfolio-navbar gradient mb-3 pb-0">
   <a class="navbar-brand" href="#">WWi</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -8,8 +8,7 @@
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="'active'">Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item w-max-content" (mouseenter)="switchCartPreview(this.cartHover)"
-          (mouseleave)="switchCartPreview(this.cartHover)">
+      <li class="nav-item w-max-content">
         <a class="nav-link" [routerLink]="['/shopping-cart/step-1']" [routerLinkActive]="'active'">Shopping cart</a>
       </li>
       <li *ngIf="userService.isUserClient()" class="nav-item w-max-content">
@@ -28,6 +27,10 @@
   </div>
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
     <ul class="navbar-nav ml-auto">
+      <div class="nav-item mr-2 mt-1 pb-6" [style.cursor]="'pointer'" (mouseenter)="switchCartPreview(this.cartHover)"
+          (mouseleave)="switchCartPreview(this.cartHover)" style="padding-bottom: 19px;">
+        <fa-icon [icon]="faShoppingCart" size="md"></fa-icon>
+      </div>
       <li class="nav-item mr-2" *ngIf="!userService.isUserLoggedIn()">
         <button class="btn btn-sm btn-outline-primary navbar-text text-white" (click)="login()" style="width: 70px;">
           Login
@@ -47,4 +50,5 @@
   </div>
 </nav>
 
-<app-cart-hover [display]="this.cartHover"></app-cart-hover>
+<app-cart-hover [display]="this.cartHover" (mouseenter)="switchCartPreview(false)"
+                (mouseleave)="switchCartPreview(true)"></app-cart-hover>

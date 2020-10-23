@@ -11,4 +11,5 @@ app-cart-hover{
   position: absolute;
   z-index: 1;
   margin-left: 75%;
+  transform: translateY(-15px);
 }

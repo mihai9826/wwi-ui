@@ -1,4 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {CreateOrderRequest} from '../../../shared/models/order/create-order-request';
+import {ShoppingCartService} from '../../../modules/shopping-cart/service/shopping-cart.service';
 
 @Component({
   selector: 'app-cart-hover',
@@ -7,11 +9,11 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 })
 export class CartHoverComponent implements OnInit, OnChanges {
   @Input() display = false;
-
-  constructor() { }
+  items: CreateOrderRequest;
+  constructor(private cartService: ShoppingCartService) { }
 
   ngOnInit(): void {
-    console.log('DISPLAY-------------' + this.display);
+    this.items = this.cartService.getAllItems();
   }
 
   ngOnChanges(changes: SimpleChanges): void {

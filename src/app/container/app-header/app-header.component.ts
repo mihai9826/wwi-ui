@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../modules/authentication/service/user.service';
 import {Router} from '@angular/router';
 import {UserPrincipal} from '../../shared/models/auth/user-principal';
+import { faShoppingCart} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,7 @@ import {UserPrincipal} from '../../shared/models/auth/user-principal';
 })
 export class AppHeaderComponent implements OnInit {
   user: UserPrincipal;
+  faShoppingCart = faShoppingCart;
   open = false;
   cartHover = false;
 
