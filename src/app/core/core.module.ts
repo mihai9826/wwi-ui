@@ -7,10 +7,11 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 import {BaseLayoutComponent} from '../container/base-layout/base-layout.component';
 import {AppHeaderComponent} from '../container/app-header/app-header.component';
+import {CartHoverComponent} from '../container/app-header/cart-hover/cart-hover.component';
 
 const APP_CONTAINERS = [BaseLayoutComponent];
 
-const APP_COMPONENTS = [AppHeaderComponent];
+const APP_COMPONENTS = [AppHeaderComponent, CartHoverComponent];
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ const APP_COMPONENTS = [AppHeaderComponent];
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   declarations: [
     ...APP_CONTAINERS,

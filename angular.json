@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "wwi-ui"
+  "defaultProject": "wwi-ui",
+  "cli": {
+    "analytics": "2e04788f-0388-4f73-a191-eb188af281c0"
+  }
 }

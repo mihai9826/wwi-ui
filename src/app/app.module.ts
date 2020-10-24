@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
+import { CartHoverComponent } from './container/app-header/cart-hover/cart-hover.component';
 
 @NgModule({
   declarations: [
