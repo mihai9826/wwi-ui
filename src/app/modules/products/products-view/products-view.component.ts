@@ -17,6 +17,7 @@ export class ProductsViewComponent implements OnInit {
   totalElements;
   page = 1;
   previousPage;
+  sortParam: string;
 
   constructor(private productsService: ProductsService) {
   }
@@ -37,23 +38,42 @@ export class ProductsViewComponent implements OnInit {
   loadData(event?: number) {
     if (event) {
       this.categoryId = event;
-      this.productsService.getProductsOfCategory(this.categoryId, this.page - 1, this.itemsPerPage).subscribe(
+      if (this.sortParam) {
+        this.productsService.sortProductsOfCategory(this.sortParam, this.categoryId, this.page - 1, this.itemsPerPage)
+          .subscribe(data => {
+            this.allProducts = data.content;
+            this.totalElements = data.totalElements;
+            this.itemsPerPage = data.size;
+          });
+        return;
+      } else {
+        this.productsService.getProductsOfCategory(this.categoryId, this.page - 1, this.itemsPerPage).subscribe(
+          data => {
+            this.allProducts = data.content;
+            this.totalElements = data.totalElements;
+            this.itemsPerPage = data.size;
+          }
+        );
+        return;
+      }
+    }
+    if (this.sortParam) {
+      this.productsService.sortAllProductsByPrice(this.sortParam, this.page - 1, this.itemsPerPage).subscribe(data => {
+        this.allProducts = data.content;
+        this.totalElements = data.totalElements;
+        this.itemsPerPage = data.size;
+      });
+      this.categoryId = 0;
+    } else {
+      this.productsService.getAllProducts(this.page - 1, this.itemsPerPage).subscribe(
         data => {
           this.allProducts = data.content;
           this.totalElements = data.totalElements;
           this.itemsPerPage = data.size;
         }
       );
-      return;
+      this.categoryId = 0;
     }
-    this.productsService.getAllProducts(this.page - 1, this.itemsPerPage).subscribe(
-      data => {
-        this.allProducts = data.content;
-        this.totalElements = data.totalElements;
-        this.itemsPerPage = data.size;
-      }
-    );
-    this.categoryId = 0;
   }
 
   itemsDropDownChange(event: any) {
@@ -64,12 +84,14 @@ export class ProductsViewComponent implements OnInit {
   sortDropDownChange(event: any) {
     if (this.categoryId) {
       if (event.target.value === '') {
+        this.sortParam = '';
         this.productsService.getProductsOfCategory(this.categoryId, this.page - 1, this.itemsPerPage).subscribe(data => {
           this.allProducts = data.content;
           this.totalElements = data.totalElements;
           this.itemsPerPage = data.size;
         });
       } else {
+        this.sortParam = event.target.value;
         this.productsService.sortProductsOfCategory(event.target.value, this.categoryId, this.page - 1, this.itemsPerPage)
           .subscribe(data => {
             this.allProducts = data.content;
@@ -79,12 +101,14 @@ export class ProductsViewComponent implements OnInit {
       }
     } else {
       if (event.target.value === '') {
+        this.sortParam = '';
         this.productsService.getAllProducts(this.page - 1, this.itemsPerPage).subscribe(data => {
           this.allProducts = data.content;
           this.totalElements = data.totalElements;
           this.itemsPerPage = data.size;
         });
       } else {
+        this.sortParam = event.target.value;
         this.productsService.sortAllProductsByPrice(event.target.value, this.page - 1, this.itemsPerPage).subscribe(data => {
           this.allProducts = data.content;
           this.totalElements = data.totalElements;
