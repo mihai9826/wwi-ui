@@ -13,9 +13,10 @@
           <div class="col-4">{{item.stockItem.unitPrice}} RON</div>
         </div>
       </li>
-
     </ul>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+  <div class="card-footer text-center">
+    <a class="btn btn-primary" [routerLink]="['/shopping-cart/step-1']">Shopping cart</a>
+  </div>
 
 </div>
 <!--{{ (name.length>36)? (name | slice:0:36)+'...':(name) }}-->

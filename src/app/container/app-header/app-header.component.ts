@@ -3,6 +3,7 @@ import {UserService} from '../../modules/authentication/service/user.service';
 import {Router} from '@angular/router';
 import {UserPrincipal} from '../../shared/models/auth/user-principal';
 import { faShoppingCart} from '@fortawesome/free-solid-svg-icons';
+import {ShoppingCartService} from '../../modules/shopping-cart/service/shopping-cart.service';
 
 @Component({
   selector: 'app-header',
@@ -14,11 +15,15 @@ export class AppHeaderComponent implements OnInit {
   faShoppingCart = faShoppingCart;
   open = false;
   cartHover = false;
+  cartCounter: string;
 
   constructor(private router: Router,
-              public userService: UserService) { }
+              public userService: UserService,
+              private cartService: ShoppingCartService) { }
 
   ngOnInit() {
+    this.cartCounter = `${this.cartService.getAllItems().orderLines.length}`;
+
     this.userService.getCurrentUser().subscribe(
       user => {
         this.user = user;

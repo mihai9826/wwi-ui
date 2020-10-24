@@ -29,7 +29,10 @@
     <ul class="navbar-nav ml-auto">
       <div class="nav-item mr-2 mt-1 pb-6" [style.cursor]="'pointer'" (mouseenter)="switchCartPreview(this.cartHover)"
           (mouseleave)="switchCartPreview(this.cartHover)" style="padding-bottom: 19px;">
-        <fa-icon [icon]="faShoppingCart" size="md"></fa-icon>
+        <fa-layers [fixedWidth]="true" [size]="'lg'">
+          <fa-icon [icon]="faShoppingCart"></fa-icon>
+          <fa-layers-counter [content]="cartCounter" [styles]="{'font-size':'30px'}"></fa-layers-counter>
+        </fa-layers>
       </div>
       <li class="nav-item mr-2" *ngIf="!userService.isUserLoggedIn()">
         <button class="btn btn-sm btn-outline-primary navbar-text text-white" (click)="login()" style="width: 70px;">
