@@ -27,6 +27,12 @@
   </div>
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
     <ul class="navbar-nav ml-auto">
+      <li class="nav-item mr-2 mt-1 pb-6" [style.cursor]="'pointer'" *ngIf="userService.isUserLoggedIn()">
+        <fa-layers [fixedWidth]="true" [size]="'lg'">
+          <fa-icon [icon]="faHeart"></fa-icon>
+          <fa-layers-counter [content]="favoriteCounter" [styles]="{'font-size':'30px'}"></fa-layers-counter>
+        </fa-layers>
+      </li>
       <div class="nav-item mr-2 mt-1 pb-6" [style.cursor]="'pointer'" (mouseenter)="switchCartPreview(this.cartHover)"
           (mouseleave)="switchCartPreview(this.cartHover)" style="padding-bottom: 19px;">
         <fa-layers [fixedWidth]="true" [size]="'lg'">
