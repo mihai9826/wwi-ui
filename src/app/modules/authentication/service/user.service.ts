@@ -82,4 +82,12 @@ export class UserService {
     return this.http.get<Product[]>(environment.apiBaseURL + `/client/users/${this.getUserId()}/favorites`);
   }
 
+  deleteFavoriteItem(itemId: number): Observable<void> {
+    return this.http.delete<void>(environment.apiBaseURL + `/client/users/${this.getUserId()}/favorites/${itemId}`);
+  }
+
+  addItemToFavorite(itemId: number): Observable<void> {
+    return this.http.put<void>(environment.apiBaseURL + `/client/users/${this.getUserId()}/favorites`, itemId);
+  }
+
 }

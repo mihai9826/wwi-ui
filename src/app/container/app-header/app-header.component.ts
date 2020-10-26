@@ -16,6 +16,7 @@ export class AppHeaderComponent implements OnInit {
   faHeart = faHeart;
   open = false;
   cartHover = false;
+  favoriteHover = false;
   cartCounter: string;
   favoriteCounter: string;
 
@@ -25,7 +26,6 @@ export class AppHeaderComponent implements OnInit {
 
   ngOnInit() {
     this.cartCounter = `${this.cartService.getAllItems().orderLines.length}`;
-
     this.userService.getCurrentUser().subscribe(
       user => {
         this.user = user;
@@ -46,6 +46,10 @@ export class AppHeaderComponent implements OnInit {
 
   switchCartPreview(oldState: boolean) {
     this.cartHover = !oldState;
+  }
+
+  switchFavoritePreview(old: boolean) {
+    this.favoriteHover = !old;
   }
 
 }

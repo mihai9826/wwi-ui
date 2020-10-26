@@ -10,6 +10,7 @@
   </ul>
   <div class="card-footer bg-white d-flex justify-content-center border-top-0">
     <button *ngIf="!userService.isUserAdmin()" class="btn w-75 text-center text-light gradient" (click)="addButtonClicked()" [disabled]="inStock">Add <fa-icon [icon]="faShoppingCart" size="sm"></fa-icon></button>
+    <button *ngIf="userService.isUserClient()" class="btn w-75 text-center ml-1 gradient" (click)="addToFavoriteClicked()">Add <fa-icon [icon]="faHeart" size="sm"></fa-icon></button>
     <button *ngIf="userService.isUserAdmin()" class="btn w-75 text-center text-light gradient" routerLink="/admin/product/{{id}}">Edit</button>
   </div>
 </div>
