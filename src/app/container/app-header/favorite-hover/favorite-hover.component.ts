@@ -18,15 +18,15 @@ export class FavoriteHoverComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.userService.getCurrentUser().subscribe(
-      _ => {
-        this.userService.getFavoriteItems().subscribe(items => this.favoriteItems = items);
-      }
-    );
+    if (this.userService.isUserLoggedIn()) {
+      this.userService.getFavoriteItems().subscribe(items => this.favoriteItems = items);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.userService.getFavoriteItems().subscribe(items => this.favoriteItems = items);
+    if (this.userService.isUserLoggedIn()) {
+      this.userService.getFavoriteItems().subscribe(items => this.favoriteItems = items);
+    }
   }
 
   onRemoveTogglePress(favoriteIndex: number) {
