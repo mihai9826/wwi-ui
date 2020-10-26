@@ -1,0 +1,16 @@
+<div class="card" [style.display]="displayy ? 'block' : 'none'">
+  <div class="card-header">
+    Favorite products
+  </div>
+  <ul class="list-group list-group-flush">
+    <li *ngFor="let item of favoriteItems; index as i" class="list-group-item">
+      <div class="row">
+        <div class="col-6">{{(item.stockItemName.length > 45) ? (item.stockItemName | slice:0:45) + '...':(item.stockItemName)}}</div>
+        <div class="col-4">{{item.unitPrice}} RON</div>
+        <div class="col-2"><fa-icon [icon]="faRemoveIcon" style="cursor: pointer;" size="sm" (click)="onRemoveTogglePress(i)"></fa-icon></div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!--[style.display]="display ? 'block' : 'none'"-->

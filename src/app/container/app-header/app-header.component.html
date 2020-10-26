@@ -27,13 +27,20 @@
   </div>
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
     <ul class="navbar-nav ml-auto">
-      <div class="nav-item mr-2 mt-1 pb-6" [style.cursor]="'pointer'" (mouseenter)="switchCartPreview(this.cartHover)"
+      <li class="nav-item mr-2 mt-1 pb-6" [style.cursor]="'pointer'" *ngIf="userService.isUserLoggedIn()"
+          (mouseenter)="switchFavoritePreview(this.favoriteHover)" (mouseleave)="switchFavoritePreview(this.favoriteHover)">
+        <fa-layers [fixedWidth]="true" [size]="'lg'">
+          <fa-icon [icon]="faHeart"></fa-icon>
+          <fa-layers-counter [content]="favoriteCounter" [styles]="{'font-size':'30px'}"></fa-layers-counter>
+        </fa-layers>
+      </li>
+      <li class="nav-item mr-2 mt-1 pb-6" [style.cursor]="'pointer'" (mouseenter)="switchCartPreview(this.cartHover)"
           (mouseleave)="switchCartPreview(this.cartHover)" style="padding-bottom: 19px;">
         <fa-layers [fixedWidth]="true" [size]="'lg'">
           <fa-icon [icon]="faShoppingCart"></fa-icon>
           <fa-layers-counter [content]="cartCounter" [styles]="{'font-size':'30px'}"></fa-layers-counter>
         </fa-layers>
-      </div>
+      </li>
       <li class="nav-item mr-2" *ngIf="!userService.isUserLoggedIn()">
         <button class="btn btn-sm btn-outline-primary navbar-text text-white" (click)="login()" style="width: 70px;">
           Login
@@ -55,3 +62,6 @@
 
 <app-cart-hover [display]="this.cartHover" (mouseenter)="switchCartPreview(false)"
                 (mouseleave)="switchCartPreview(true)"></app-cart-hover>
+
+<app-favorite-hover [displayy]="this.favoriteHover" (mouseenter)="switchFavoritePreview(false)"
+                (mouseleave)="switchFavoritePreview(true)"></app-favorite-hover>

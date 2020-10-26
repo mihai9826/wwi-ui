@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../modules/authentication/service/user.service';
 import {Router} from '@angular/router';
 import {UserPrincipal} from '../../shared/models/auth/user-principal';
-import { faShoppingCart} from '@fortawesome/free-solid-svg-icons';
+import {faHeart, faShoppingCart} from '@fortawesome/free-solid-svg-icons';
 import {ShoppingCartService} from '../../modules/shopping-cart/service/shopping-cart.service';
 
 @Component({
@@ -13,9 +13,12 @@ import {ShoppingCartService} from '../../modules/shopping-cart/service/shopping-
 export class AppHeaderComponent implements OnInit {
   user: UserPrincipal;
   faShoppingCart = faShoppingCart;
+  faHeart = faHeart;
   open = false;
   cartHover = false;
+  favoriteHover = false;
   cartCounter: string;
+  favoriteCounter: string;
 
   constructor(private router: Router,
               public userService: UserService,
@@ -23,10 +26,10 @@ export class AppHeaderComponent implements OnInit {
 
   ngOnInit() {
     this.cartCounter = `${this.cartService.getAllItems().orderLines.length}`;
-
     this.userService.getCurrentUser().subscribe(
       user => {
         this.user = user;
+        this.userService.getFavoriteItems().subscribe(items => this.favoriteCounter = `${items.length}`);
         console.log(this.user);
       }
     );
@@ -43,6 +46,10 @@ export class AppHeaderComponent implements OnInit {
 
   switchCartPreview(oldState: boolean) {
     this.cartHover = !oldState;
+  }
+
+  switchFavoritePreview(old: boolean) {
+    this.favoriteHover = !old;
   }
 
 }

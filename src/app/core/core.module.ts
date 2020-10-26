@@ -8,10 +8,11 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {BaseLayoutComponent} from '../container/base-layout/base-layout.component';
 import {AppHeaderComponent} from '../container/app-header/app-header.component';
 import {CartHoverComponent} from '../container/app-header/cart-hover/cart-hover.component';
+import {FavoriteHoverComponent} from '../container/app-header/favorite-hover/favorite-hover.component';
 
 const APP_CONTAINERS = [BaseLayoutComponent];
 
-const APP_COMPONENTS = [AppHeaderComponent, CartHoverComponent];
+const APP_COMPONENTS = [AppHeaderComponent, CartHoverComponent, FavoriteHoverComponent];
 
 @NgModule({
   imports: [

@@ -10,6 +10,7 @@ import {CreateUserRequest} from '../../../shared/models/auth/create-user-request
 import {PasswordTokenInitializationRequest} from '../../../shared/models/auth/password-token-initialization-request';
 import {PasswordTokenConfirmationRequest} from '../../../shared/models/auth/password-token-confirmation-request';
 import {EditUserRequest} from '../../../shared/models/auth/edit-user-request';
+import {Product} from '../../../shared/models/product/product';
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +76,18 @@ export class UserService {
   logout(): Observable<void> {
     this.currentUserSubject = new BehaviorSubject<UserPrincipal>(null);
     return this.http.get<void>(environment.apiBaseURL + '/logout');
+  }
+
+  getFavoriteItems(): Observable<Product[]> {
+    return this.http.get<Product[]>(environment.apiBaseURL + `/client/users/${this.getUserId()}/favorites`);
+  }
+
+  deleteFavoriteItem(itemId: number): Observable<void> {
+    return this.http.delete<void>(environment.apiBaseURL + `/client/users/${this.getUserId()}/favorites/${itemId}`);
+  }
+
+  addItemToFavorite(itemId: number): Observable<void> {
+    return this.http.put<void>(environment.apiBaseURL + `/client/users/${this.getUserId()}/favorites`, itemId);
   }
 
 }

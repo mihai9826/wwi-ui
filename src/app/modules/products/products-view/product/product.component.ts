@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {faShoppingCart} from '@fortawesome/free-solid-svg-icons';
+import {faHeart, faShoppingCart} from '@fortawesome/free-solid-svg-icons';
 import {ToastrService} from 'ngx-toastr';
 import {ShoppingCartService} from '../../../shopping-cart/service/shopping-cart.service';
 import {Product} from '../../../../shared/models/product/product';
@@ -18,6 +18,7 @@ export class ProductComponent implements OnInit {
   @Input() inStock: boolean;
 
   faShoppingCart = faShoppingCart;
+  faHeart = faHeart;
 
   constructor(private shoppingCartService: ShoppingCartService,
               public userService: UserService,
@@ -38,4 +39,8 @@ export class ProductComponent implements OnInit {
     this.toastr.success('Product added to shop chart', 'Success');
   }
 
+  addToFavoriteClicked() {
+    this.userService.addItemToFavorite(this.id).subscribe(_ => this.toastr.success('Added to favorites'),
+      err => this.toastr.warning('Item already added', 'Warning'));
+  }
 }
