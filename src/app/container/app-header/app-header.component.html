@@ -23,6 +23,9 @@
       <li *ngIf="userService.isUserAdmin()" class="nav-item w-max-content">
         <a class="nav-link" [routerLink]="['/admin/active-orders']" [routerLinkActive]="'active'">Active orders</a>
       </li>
+      <li *ngIf="userService.isUserAdmin()" class="nav-item w-max-content">
+        <a class="nav-link" [routerLink]="['/admin/users']" [routerLinkActive]="'active'">Manage users</a>
+      </li>
     </ul>
   </div>
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
@@ -63,5 +66,5 @@
 <app-cart-hover [display]="this.cartHover" (mouseenter)="switchCartPreview(false)"
                 (mouseleave)="switchCartPreview(true)"></app-cart-hover>
 
-<app-favorite-hover [displayy]="this.favoriteHover" (mouseenter)="switchFavoritePreview(false)"
+<app-favorite-hover *ngIf="!userService.isUserAdmin()" [displayy]="this.favoriteHover" (mouseenter)="switchFavoritePreview(false)"
                 (mouseleave)="switchFavoritePreview(true)"></app-favorite-hover>

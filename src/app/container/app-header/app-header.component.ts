@@ -29,9 +29,12 @@ export class AppHeaderComponent implements OnInit {
     this.userService.getCurrentUser().subscribe(
       user => {
         this.user = user;
-        this.userService.getFavoriteItems().subscribe(items => this.favoriteCounter = `${items.length}`);
+        if (!this.user.theUser.role.includes('ADMIN')) {
+          this.userService.getFavoriteItems().subscribe(items => this.favoriteCounter = `${items.length}`);
+        }
         console.log(this.user);
-      }
+      },
+      () => {}
     );
   }
 
