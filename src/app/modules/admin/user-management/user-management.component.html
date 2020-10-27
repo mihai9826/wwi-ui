@@ -1,1 +1,57 @@
-<p>user-management works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+    <ngb-pagination [collectionSize]="totalElements"
+                    [pageSize]="itemsPerPage"
+                    [(page)]="page"
+                    [rotate]="true"
+                    [boundaryLinks]="true"
+                    [maxSize]="10"
+                    (pageChange)="loadPage($event)"></ngb-pagination>
+    </div>
+    <div class="col">
+      <label for="itemsPerPage" class="ml-auto">Per page</label>
+      <select id="itemsPerPage" class="custom-select" style="width: auto" (change)="itemsDropDownChange($event)">
+        <option [value]="9">9</option>
+        <option [value]="18" [selected]="true">18</option>
+        <option [value]="30">30</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table table-hover bg-white">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email address</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Role</th>
+        <th scope="col" class="text-center"></th>
+        <th scope="col" class="text-center"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users; index as i">
+        <th scope="row">{{user.personId}}</th>
+        <td>{{user.fullName}}</td>
+        <td>{{user.emailAddress}}</td>
+        <td>{{user.phoneNumber}}</td>
+        <td>
+          <select id="role" class="custom-select w-auto m-0"
+                  [selectedIndex]="user.role.includes('ADMIN') ? 1 : 0"
+                  (change)="onDropDownChange($event)">
+            <option [value]="'CLIENT'">CLIENT</option>
+            <option [value]="'ADMIN'" >ADMIN</option>
+
+          </select>
+        </td>
+        <td><button class="btn btn-md btn-primary" (click)="onEditPress(i)">Edit role</button></td>
+        <td><button class="btn btn-md btn-danger" (click)="onDeletePress(i)">Delete</button></td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>

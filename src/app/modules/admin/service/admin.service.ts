@@ -5,6 +5,7 @@ import {Order} from '../../../shared/models/order/order';
 import {environment} from '../../../../environments/environment';
 import {Page} from '../../../shared/models/product/product';
 import {AdminProductDTO} from '../../../shared/models/product/admin-product-dto';
+import {User} from '../../../shared/models/auth/user';
 
 @Injectable({
   providedIn: 'root'
@@ -65,5 +66,17 @@ export class AdminService {
 
   getClientOrderById(currentOrderId: string): Observable<Order> {
     return this.http.get<Order>(environment.apiBaseURL + `/admin/orders/${currentOrderId}`);
+  }
+
+  getRegisteredUsers(page: number, size: number): Observable<Page<User>> {
+    return this.http.get<Page<User>>(environment.apiBaseURL + `/admin/users?page=${page}&size=${size}`);
+  }
+
+  deleteRegisteredUser(userId: number): Observable<void> {
+    return this.http.delete<void>(environment.apiBaseURL + `/admin/users/${userId}`);
+  }
+
+  updateUserRole(userId: number, newRole: string): Observable<void> {
+    return this.http.put<void>(environment.apiBaseURL + `/admin/users/${userId}`, newRole);
   }
 }
