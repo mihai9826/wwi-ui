@@ -34,7 +34,7 @@
     "firebase": "^7.7.0",
     "font-awesome": "^4.7.0",
     "http-server": "^0.12.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "moment": "^2.24.0",
     "ng": "0.0.0",
     "ng-bootstrap": "^1.6.3",
